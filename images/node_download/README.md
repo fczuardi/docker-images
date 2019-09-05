@@ -8,7 +8,8 @@ Tags on this project are node versions, so `fczuardi/node_download:10.16.3` shou
 
 ## Usage
 
-This image was made for copying node binaries to other images on a multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/) setup. The files are under `/opt/node`
+This image was made for copying node binaries to other images on a 
+[multi-stage build](https://docs.docker.com/develop/develop-images/multistage-build/) setup. The files are under `/opt/node`
 
 For example, to have node on a Ubuntu Xenial project you could have a Dockerfile like this:
 
