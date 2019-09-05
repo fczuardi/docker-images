@@ -1,0 +1,12 @@
+#!/bin/sh
+if [ "$DOCKER_TAG" = "latest" ]; then
+  # use default build args
+  docker build -f $DOCKERFILE_PATH -t $IMAGE_NAME .
+else
+  # use docker tag as node version build argument
+  docker build \
+    --build-arg node_version=$DOCKER_TAG \
+    -f $DOCKERFILE_PATH \
+    -t $IMAGE_NAME .
+fi
+
