@@ -1,16 +1,11 @@
-# Ubuntu LTS and Node LTS as defaults
+# Ubuntu 18.04 and Node 10.16.3 as defaults
 ARG ubuntu_base=fczuardi/bionic
 ARG node_version=10.16.3
 
-FROM ${ubuntu_base} AS ubuntu
-MAINTAINER Fabricio Zuardi <fabricio@fabricio.org>
-ARG ubuntu_base
-ARG node_version
-ENV download_url https://nodejs.org/dist/v${node_version}/node-v${node_version}-linux-x64.tar.xz
+# image containing downloaded binaries
+FROM fczuardi/node_download:${node_version} as download
 
-RUN echo Ubuntu base is: $ubuntu_base
-
-RUN echo Nodejs version is: $node_version
-
-RUN echo Download URL is: $download_url
-
+FROM ${ubuntu_base}
+WORKDIR "/opt/node"
+COPY --from=download /opt/node/bin bin
+ENV PATH=$PATH:/opt/node/bin
